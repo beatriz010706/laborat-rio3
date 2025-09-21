@@ -45,7 +45,57 @@ public class GerirObra {
 		System.out.println("Obra não encontrada");
 	}
 	
-	public void imprimirPorTela
+	public void imprimirPorTela(String tipoTela) {
+		 boolean found = false;
+		 
+		 for (Obra o : obras) {
+		        String tela = o.getTipoTela();
+		        if (tela != null & tela.equalsIgnoreCase(tipoTela)) {
+		            System.out.println("Título: " + o.getTitulo());
+		            System.out.println("Autor: " + o.getAutor());
+		            found = true;
+	        }
+        }
+		 if (!found) {
+		        System.out.println("Nenhuma obra encontrada com o tipo de tela: " + tipoTela);
+		    }
+
+	}
 	
+	public void imprimirDetalhesAgrupados() {
+		ArrayList<Obra> pinturas = new ArrayList<>();
+	    ArrayList<Obra> pinturasOleo = new ArrayList<>();
+	    ArrayList<Obra> esculturas = new ArrayList<>();
+	    
+	    for (Obra o : obras) {
+	    	if (o instanceof Pintura) {
+	    		pinturas.add(o);
+	    	}
+	    	if (o instanceof Escultura) {
+	    		esculturas.add(o);
+	    	}
+	    	if (o instanceof PinturaOleo) {
+	    		pinturasOleo.add(o);
+	    	}
+	    }
+	    System.out.println("Pinturas:");
+	    for (Obra o : pinturas) {
+	    	System.out.println(o);
+	    }
+	    System.out.println(pinturas.size() + " pinturas.");
+	    
+	    System.out.println("Pinturas a Oleo: ");
+	    for(Obra o : pinturasOleo) {
+	    	System.out.println(o);
+	    }
+	    System.out.println(pinturasOleo.size() + " pinturas a oleo");
+	    
+	    System.out.println("Esculturas: ");
+	    for(Obra o : esculturas) {
+	    	System.out.println(o);
+	    }
+	    System.out.println(esculturas.size() + " esculturas.");
+	    
+	}
 	
 }
