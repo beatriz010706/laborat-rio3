@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 public class GerirObra {
 	private ArrayList<Obra> obras;
+	private ArrayList<Pintura> pinturas;
+	private ArrayList<Escultura> esculturas;
+	private ArrayList<PinturaOleo> pinturasOleo;
 
 	/**
 	 * @param obras
