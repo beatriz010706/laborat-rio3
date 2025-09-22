@@ -9,6 +9,7 @@ public class GerirObra {
 	private ArrayList<Pintura> pinturas;
 	private ArrayList<Escultura> esculturas;
 	private ArrayList<PinturaOleo> pinturasOleo;
+	
 
 	/**
 	 * @param obras
