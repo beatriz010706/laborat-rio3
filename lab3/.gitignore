@@ -1,1 +1,7 @@
-/bin/
+#ficheiros do Eclipse
+.classpath
+.project
+.settings/
+
+#diretório de ficheiros compilados
+bin/
