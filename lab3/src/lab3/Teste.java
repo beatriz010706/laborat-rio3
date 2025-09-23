@@ -4,7 +4,7 @@
 package lab3;
 
 /**
- * 
+ * @author beatriz silva
  */
 import java.util.Scanner;
 public class Teste {

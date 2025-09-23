@@ -1,5 +1,7 @@
 package lab3;
-
+/**
+ * @author diogo garcia
+ */
 public class Obra {
 	String titulo;
     String autor;
@@ -20,6 +22,9 @@ public class Obra {
 
     public int getAno() {
         return ano;
+    }
+    public String getDetalhes() {
+        return "Título: " + titulo + "Autor: " + autor + "Ano: " + ano;
     }
 
 }

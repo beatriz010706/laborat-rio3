@@ -1,4 +1,7 @@
 package lab3;
+/**
+ * @author miguel silva
+ */
 
 public class PinturaOleo extends Pintura {
     String tipoTela;

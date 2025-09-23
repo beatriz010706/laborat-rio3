@@ -4,105 +4,88 @@
 package lab3;
 
 /**
- * 
+ * @author gonçalo silva
  */
 import java.util.ArrayList;
 public class GerirObra {
-	private ArrayList<Obra> obras;
-	private ArrayList<Pintura> pinturas;
-	private ArrayList<Escultura> esculturas;
-	private ArrayList<PinturaOleo> pinturasOleo;
-	
+	ArrayList<Obra> obras = new ArrayList<>();
 
-	/**
-	 * @param obras
-	 */
-	public GerirObra() {
-		obras = new ArrayList<>();
-	}
-	
-	public void registarObra(String titulo, String autor, int ano) {
-		for (Obra o : obras) {
-			if (o.getTitulo().equalsIgnoreCase(titulo) & o.getAutor().equalsIgnoreCase(autor)) {
-				System.out.println("Obra já existente");
-				return;
-			}
-		}
-		obras.add(new Obra(titulo, autor, ano));
-		System.out.println("Obra registada");
-	}
-	
-	public void imprimirObras() {
-		for (Obra o : obras) {
-			System.out.println("Título: " + o.getTitulo());
-			System.out.println("Autor: " + o.getAutor());
-			System.out.println("Ano: " + o.getAno());
-		}
-	}
-	
-	public void pesquisarObras(String titulo) {
-		for (Obra o : obras) {
-			if (o.getTitulo().equalsIgnoreCase(titulo)) {
-				System.out.println("Título: " + o.getTitulo());
-				System.out.println("Autor: " + o.getAutor());
-				System.out.println("Ano: " + o.getAno());
-				return;
-			}
-		}
-		System.out.println("Obra não encontrada");
-	}
-	
-	public void imprimirPorTela(String tipoTela) {
-		 boolean found = false;
-		 
-		 for (Obra o : obras) {
-		        String tela = ((PinturaOleo) o).getTipoTela();
-		        if (tela != null & tela.equalsIgnoreCase(tipoTela)) {
-		            System.out.println("Título: " + o.getTitulo());
-		            System.out.println("Autor: " + o.getAutor());
-		            found = true;
-	        }
+    public GerirObra() {
+        obras = new ArrayList<>();
+    }
+    // a) Registar uma obra (não pode haver duas com o mesmo título e autor)
+    public void registarObra(Obra o) {
+        for (Obra obra : obras) {
+            if (obra.getTitulo().equalsIgnoreCase(o.getTitulo()) &&
+                    obra.getAutor().equalsIgnoreCase(o.getAutor())) {
+                System.out.println("Já existe uma obra com esse título e autor!");
+                return;
+            }
         }
-		 if (!found) {
-		        System.out.println("Nenhuma obra encontrada com o tipo de tela: " + tipoTela);
-		    }
+        obras.add(o);
+        System.out.println("Obra registada com sucesso!");
+    }
+    // b) Imprimir todos os detalhes de todas as obras
+    public void imprimirObras() {
+        if (obras.isEmpty()) {
+            System.out.println("Não existem obras registadas.");
+            return;
+        }
+        for (Obra o : obras) {
+            System.out.println(o.getDetalhes());
+        }
+    }
+    // c) Pesquisar uma obra pelo título
+    public void pesquisarObra(String titulo) {
+        for (Obra o : obras) {
+            if (o.getTitulo().equalsIgnoreCase(titulo)) {
+                System.out.println(o.getDetalhes());
+                return;
+            }
+        }
+        System.out.println("Obra de arte não encontrada.");
+    }
+    // d) Imprimir o título e o autor das pinturas a óleo com determinado tipo de tela
+    public void imprimirPorTela(String tipoTela) {
+        boolean encontrou = false;
+        for (Obra o : obras) {
+            if (o instanceof PinturaOleo) {
+                PinturaOleo po = (PinturaOleo) o;
+                if (po.getTipoTela().equalsIgnoreCase(tipoTela)) {
+                    System.out.println("Título: " + po.getTitulo() + "Autor: " + po.getAutor());
+                    encontrou = true;
+                }
+            }
+        }
+        if (!encontrou) {
+            System.out.println("Nenhuma pintura a óleo encontrada com tela " + tipoTela);
+        }
+    }
+    // e) Imprimir agrupadas por tipo e contar
+    public void imprimirAgrupado() {
+        int pinturas = 0;
+        int pinturasOleo = 0;
+        int esculturas = 0;
 
-	}
-	
-	public void imprimirDetalhesAgrupados() {
-		ArrayList<Obra> pinturas = new ArrayList<>();
-	    ArrayList<Obra> pinturasOleo = new ArrayList<>();
-	    ArrayList<Obra> esculturas = new ArrayList<>();
-	    
-	    for (Obra o : obras) {
-	    	if (o instanceof Pintura) {
-	    		pinturas.add(o);
-	    	}
-	    	if (o instanceof Escultura) {
-	    		esculturas.add(o);
-	    	}
-	    	if (o instanceof PinturaOleo) {
-	    		pinturasOleo.add(o);
-	    	}
-	    }
-	    System.out.println("Pinturas:");
-	    for (Obra o : pinturas) {
-	    	System.out.println(o);
-	    }
-	    System.out.println(pinturas.size() + " pinturas.");
-	    
-	    System.out.println("Pinturas a Oleo: ");
-	    for(Obra o : pinturasOleo) {
-	    	System.out.println(o);
-	    }
-	    System.out.println(pinturasOleo.size() + " pinturas a oleo");
-	    
-	    System.out.println("Esculturas: ");
-	    for(Obra o : esculturas) {
-	    	System.out.println(o);
-	    }
-	    System.out.println(esculturas.size() + " esculturas.");
-	    
-	}
+        for (Obra o : obras) {
+            if (o instanceof PinturaOleo) {
+                pinturasOleo++;
+                System.out.println("[Pintura a Óleo]");
+            } else if (o instanceof Pintura) {
+                pinturas++;
+                System.out.println("[Pintura]");
+            } else if (o instanceof Escultura) {
+                esculturas++;
+                System.out.println("[Escultura]");
+            }
+            System.out.println(o.getDetalhes());
+            System.out.println("-----");
+        }
+
+        System.out.println("Resumo:");
+        System.out.println("Pinturas: " + pinturas);
+        System.out.println("Pinturas a Óleo: " + pinturasOleo);
+        System.out.println("Esculturas: " + esculturas);
+    }
 	
 }

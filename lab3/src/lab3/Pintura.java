@@ -1,5 +1,7 @@
 package lab3;
-
+/**
+ * @author miguel silva
+ */
 public class Pintura extends Obra{
     String tecnica;
 

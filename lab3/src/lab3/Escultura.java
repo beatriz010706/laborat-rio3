@@ -4,7 +4,7 @@
 package lab3;
 
 /**
- * 
+ * @author inês rodrigues
  */
 public class Escultura extends Obra{
 	private String material;
