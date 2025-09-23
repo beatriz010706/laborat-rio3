@@ -56,7 +56,7 @@ public class GerirObra {
 		 boolean found = false;
 		 
 		 for (Obra o : obras) {
-		        String tela = o.getTipoTela();
+		        String tela = ((PinturaOleo) o).getTipoTela();
 		        if (tela != null & tela.equalsIgnoreCase(tipoTela)) {
 		            System.out.println("Título: " + o.getTitulo());
 		            System.out.println("Autor: " + o.getAutor());
