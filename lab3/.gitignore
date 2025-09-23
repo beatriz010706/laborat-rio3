@@ -5,3 +5,10 @@
 
 #diretório de ficheiros compilados
 bin/
+
+#ficheiros compilados java
+*.class
+
+#ficheiros do sistema
+.DS_Store
+
